@@ -1,0 +1,2 @@
+import React from 'react'
+export default function About(){ return (<main className='max-w-5xl mx-auto px-6 py-12'><h1 className='text-3xl font-playfair mb-4'>About Tyoohar Ghar</h1><p className='text-gray-700 mb-4'>Tyoohar Ghar curates premium festive hampers designed to bring a joyful ambience to homes and offices. We source decor from trusted suppliers and pack each hamper with care.</p></main>) }

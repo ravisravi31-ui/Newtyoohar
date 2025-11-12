@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{--burgundy:#7b0c0c;--gold:#cba852;--cream:#fff8f0}
+
+body { font-family: Inter, sans-serif; background: linear-gradient(180deg,var(--cream),#fffaf5); }
+h1,h2,h3 { font-family: 'Playfair Display', serif; color: #3c2a21; }
+
+.hero-bg { background-image: url('/src/assets/christmas-room.jpg'); background-size: cover; background-position: center; }
+.hero-overlay { background: rgba(11,6,6,0.45); backdrop-filter: blur(3px); }
+
+.snow { pointer-events: none; position:fixed; inset:0; z-index:40; }
+.snow span { position:absolute; top:-10%; color: rgba(255,255,255,0.95); opacity:0.9; font-size:14px; animation: fall linear infinite; text-shadow: 0 1px 0 rgba(0,0,0,0.2); }
+@keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+.modal-backdrop { position: fixed; inset:0; background: rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:60; }
+.modal { background: linear-gradient(180deg, rgba(255,250,245,1), rgba(255,248,240,1)); border-radius: 12px; box-shadow: 0 10px 40px rgba(0,0,0,0.35); padding: 20px; max-width: 720px; width: 95%; }
+.gold-btn { background: linear-gradient(90deg, #d6b76b, #cba852); color: #2b1a12; }
+.form-field { margin-bottom: 12px; }

@@ -1,0 +1,3 @@
+import React from 'react'
+import ProductCard from '../components/ProductCard'
+export default function Hampers(){ return (<main className='max-w-6xl mx-auto px-6 py-12'><h1 className='text-3xl font-playfair mb-6'>Our Hampers</h1><div className='grid md:grid-cols-3 gap-6'><ProductCard size='Small' price='₹475' features={['Mini tree','4 baubles','2 candles','Greeting card']} img='/src/assets/small.jpg' /><ProductCard size='Medium' price='₹800' features={['Tabletop tree','8 baubles','Fairy lights','Sock','Chocolates']} img='/src/assets/medium.jpg' /><ProductCard size='Large' price='₹1,350' features={['Wreath','Large ornaments','Lights','Premium box']} img='/src/assets/large.jpg' /></div></main>) }

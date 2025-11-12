@@ -1,0 +1,10 @@
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.processing.forms]
+  enabled = true
+
+[context.production.environment]
+  NODE_VERSION = "22"

@@ -1,0 +1,5 @@
+import React, { useState } from 'react'
+import OrderForm from './OrderForm'
+export default function ProductCard({size,price,features,img}){
+  const [open, setOpen] = useState(false)
+  return (<div className='bg-white/95 p-4 rounded-2xl shadow-xl hover:scale-[1.02] transition-transform'><img src={img} alt={size} className='w-full h-44 object-cover rounded-md mb-3' /><h3 className='text-xl font-semibold mb-2'>{size} Hamper — <span className='text-[#cba852]'>{price}</span></h3><ul className='text-gray-600 list-disc list-inside mb-3'>{features.map(f=> <li key={f}>{f}</li>)}</ul><div className='flex gap-3'><button onClick={()=>setOpen(true)} className='px-3 py-2 rounded-md border border-gray-300'>Buy Now</button><a href='/contact' className='px-3 py-2 border rounded-md'>Enquire</a></div>{open && (<div className='modal-backdrop' onClick={()=>setOpen(false)}><div className='modal' onClick={(e)=>e.stopPropagation()}><OrderForm defaultHamper={size} /><div className='mt-3'><button onClick={()=>setOpen(false)} className='px-3 py-2 text-sm'>Cancel</button></div></div></div>)}</div>) }

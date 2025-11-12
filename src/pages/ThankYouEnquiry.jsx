@@ -1,0 +1,3 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+export default function ThankYouEnquiry(){ return (<main className='min-h-[60vh] flex items-center justify-center'><div className='max-w-2xl bg-white/95 rounded-xl p-8 text-center shadow-2xl'><h2 className='text-2xl font-playfair mb-4'>💼 Thank you for your enquiry!</h2><p className='text-gray-700 mb-6'>We’ve received your request and will get back to you soon with options and offers <strong>tailored to your requirements.</strong> Let’s make your celebrations truly special!</p><Link to='/' className='gold-btn px-6 py-3 rounded'>Back to Home</Link></div></main>) }
