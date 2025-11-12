@@ -1,2 +1,0 @@
-import React from 'react'
-export default function ThankYouEnquiry(){ return (<div className='min-h-[60vh] flex items-center justify-center'><div className='bg-white p-8 rounded shadow'><h2 className='text-2xl font-semibold mb-4'>Thank you for your enquiry!</h2><p>We will contact you soon with options tailored to your requirements.</p></div></div>) }

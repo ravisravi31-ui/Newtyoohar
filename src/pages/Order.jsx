@@ -1,3 +1,0 @@
-import React from 'react'
-import OrderForm from '../components/OrderForm'
-export default function Order(){ return (<div className='max-w-3xl mx-auto p-6'><OrderForm /></div>) }
