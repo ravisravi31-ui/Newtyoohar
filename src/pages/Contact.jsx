@@ -1,0 +1,1 @@
+import React from 'react';export default function Contact(){return (<div className='max-w-4xl mx-auto p-6'><h1>Contact Us</h1><p>Email: tyooharghar@gmail.com</p><p>WhatsApp: +91 9599004265</p></div>);};
