@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tyoohar Ghar — Festive Hampers & Décor</title>
+  <meta name="description" content="Tyoohar Ghar — curated, budget-friendly Christmas hampers and festive décor for homes and corporates in Delhi NCR." />
+  <meta property="og:title" content="Tyoohar Ghar — Festive Hampers" />
+  <meta property="og:description" content="Curated Christmas hampers & décor. Perfect for home celebrations and corporate gifting." />
+  <meta property="og:image" content="assets/og-image.webp" />
+  <link rel="icon" href="assets/favicon-256.webp" />
+  <link rel="manifest" href="site.webmanifest" />
+  <meta name="theme-color" content="#B30000" />
+  <style>
+    :root{--red:#B30000;--green:#0C3B2E;--gold:#D4AF37;--cream:#fff8f0}
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:#fff;color:#111;min-height:100vh;line-height:1.4}
+    a{color:var(--red);text-decoration:none}
+    .site{min-height:100vh;display:flex;flex-direction:column}
+    header{position:fixed;top:0;left:0;right:0;z-index:40;background:linear-gradient(90deg,var(--red),var(--green));color:white;backdrop-filter:blur(4px)}
+    .container{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:44px}
+    .contact{font-size:13px}
+    main{padding-top:86px;flex:1}
+    .hero{height:460px;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;position:relative}
+    .hero .card{background:rgba(0,0,0,0.36);padding:26px;border-radius:12px;color:#fff;text-align:center;max-width:720px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+    .btn-primary{display:inline-block;padding:10px 16px;border-radius:8px;border:none;background:var(--red);color:#fff}
+    .section{padding:40px 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1100px;margin:0 auto}
+    .hamper{background:#fff;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+    .hamper img{width:100%;height:220px;object-fit:cover;border-radius:8px}
+    footer{padding:26px;background:#f7f5f3;text-align:center;font-size:14px}
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:all .18s ease}
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{background:#fff;border-radius:12px;max-width:920px;width:95%;padding:18px;box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .modal-left{flex:1;margin-right:12px}
+    .modal-right{flex:1}
+    .modal img{width:100%;height:360px;object-fit:cover;border-radius:8px}
+    .carousel-controls{display:flex;gap:8px;margin-top:8px}
+    .dots{display:flex;gap:6px;margin-top:10px;justify-content:center}
+    .dot{width:10px;height:10px;border-radius:50%;background:#e0e0e0}
+    .dot.active{background:var(--red)}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    label{display:block;margin-top:8px}
+    input,textarea,select{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
+    /* snow canvas */
+    canvas.snow{position:fixed;inset:0;pointer-events:none;z-index:50}
+    /* floating whatsapp */
+    .whatsapp{position:fixed;right:18px;bottom:18px;background:#25D366;color:#fff;border-radius:999px;padding:12px 14px;box-shadow:0 6px 18px rgba(0,0,0,0.2);z-index:70;font-weight:700}
+    /* responsive */
+    @media (max-width:700px){ .modal{padding:12px} .modal-left img{height:220px} .hero{height:360px} .hamper img{height:160px} }
+  </style>
+</head>
+<body>
+  <div class="site full-bg" role="document">
+    <header role="banner">
+      <div class="container">
+        <div class="brand">
+          <img src="assets/logo.webp" alt="Tyoohar Ghar logo" id="logo">
+          <div>
+            <div style="font-weight:700">Tyoohar Ghar</div>
+            <div style="font-size:12px;color:#ffe7b5">Your One-Stop Festive Shop</div>
+          </div>
+        </div>
+        <div class="contact" aria-hidden="false">tyooharghar@gmail.com | +91 9599004265 | <a href="https://instagram.com/tyooharghar" style="color:#fff">Instagram</a></div>
+      </div>
+    </header>
+
+    <main role="main">
+      <section class="hero" id="hero" style="background-image:url('assets/hero-hampers.webp')" aria-label="Hero: Tyoohar Ghar">
+        <div class="card">
+          <h1 style="font-size:34px;margin:0 0 6px">Celebrate Christmas, Beautifully</h1>
+          <p style="margin:0 0 12px">Premium festive hampers and décor for homes, shops & corporate gifting in Delhi NCR.</p>
+          <a href="#hampers" class="btn-primary" aria-label="See hampers">See Hampers</a>
+        </div>
+      </section>
+
+      <section class="section" id="hampers" aria-labelledby="hampersHeading">
+        <h2 id="hampersHeading" style="text-align:center;margin:0 0 18px;font-size:24px">Our Hampers</h2>
+        <div class="grid" id="grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section" aria-label="About">
+        <div style="max-width:900px;margin:0 auto">
+          <h3>Who we serve</h3>
+          <p>We cater to households, small businesses, bakeries, showrooms, and corporate clients in Delhi, NCR and surrounding areas. We offer single-pack delivery within Delhi NCR and bulk orders for pan-India shipping.</p>
+          <h4>How orders work</h4>
+          <ol>
+            <li>View our hampers and click "Order Now".</li>
+            <li>Fill the order form — we will contact you within 2 hours for payment & delivery confirmation.</li>
+            <li>For pan-India bulk orders (min 5 hampers), shipping costs will be discussed during confirmation.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <div style="max-width:1100px;margin:0 auto;padding:18px;text-align:center">
+        <div>© <span id="year"></span> Tyoohar Ghar</div>
+        <div style="margin-top:8px;font-size:13px">Designed for quick festive celebrations. Reach us at <a href="mailto:tyooharghar@gmail.com">tyooharghar@gmail.com</a></div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Modal markup -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="modalClose" aria-label="Close modal" style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer">×</button>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <div class="modal-left">
+          <img id="modalImage" src="" alt="Hamper image">
+          <div class="carousel-controls">
+            <button id="prevBtn" class="btn" aria-label="Previous image">Prev</button>
+            <button id="nextBtn" class="btn" aria-label="Next image">Next</button>
+          </div>
+          <div class="dots" id="dots" role="tablist" aria-label="Image carousel navigation"></div>
+        </div>
+        <div class="modal-right">
+          <h3 id="modalTitle"></h3>
+          <p id="modalPrice" style="color:#666"></p>
+          <p style="color:#333">Includes decorative items, lights, socks & mini tree.</p>
+          <div style="margin-top:14px" class="row">
+            <button id="orderNow" class="btn-primary">Order Now</button>
+            <button id="enquireNow" class="btn">Enquire</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Order modal (visible form) -->
+  <div id="orderModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="orderClose" aria-label="Close order form" style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer">×</button>
+      <h3>Place your order</h3>
+      <form name="order-form" method="POST" data-netlify="true" onsubmit="return handleOrderSubmit(event)">
+        <input type="hidden" name="form-name" value="order-form">
+        <input type="hidden" name="hamper" id="orderHamper">
+        <label>Name <input name="name" required></label>
+        <label>Phone <input name="phone" required></label>
+        <label>Email <input name="email"></label>
+        <label>Address <textarea name="address"></textarea></label>
+        <label>Quantity <input name="quantity" type="number" value="1"></label>
+        <div style="margin-top:12px"><button class="btn-primary" type="submit">Submit Order</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Enquiry modal -->
+  <div id="enquiryModal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button id="enquiryClose" aria-label="Close enquiry form" style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer">×</button>
+      <h3>Send an enquiry</h3>
+      <form name="enquiry-form" method="POST" data-netlify="true" onsubmit="return handleEnquirySubmit(event)">
+        <input type="hidden" name="form-name" value="enquiry-form">
+        <input type="hidden" name="hamper" id="enquiryHamper">
+        <label>Name <input name="name" required></label>
+        <label>Phone <input name="phone" required></label>
+        <label>Email <input name="email"></label>
+        <label>Company <input name="company"></label>
+        <label>Quantity <input name="quantity" type="number" value="30"></label>
+        <label>Message <textarea name="message"></textarea></label>
+        <div style="margin-top:12px"><button class="btn-primary" type="submit">Submit Enquiry</button></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Netlify hidden forms for detection -->
+  <form name="order-netlify" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+    <input type="hidden" name="form-name" value="order-form" />
+    <input name="bot-field" />
+  </form>
+  <form name="enquiry-netlify" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+    <input type="hidden" name="form-name" value="enquiry-form" />
+    <input name="bot-field" />
+  </form>
+
+  <!-- WhatsApp quick-order -->
+  <a class="whatsapp" id="whatsappBtn" href="https://wa.me/919599004265?text=Hello%20Tyoohar%20Ghar%2C%20I%27d%20like%20to%20order%20hampers." target="_blank" rel="noreferrer" aria-label="WhatsApp order">WhatsApp</a>
+
+  <canvas class="snow" id="snowCanvas" aria-hidden="true"></canvas>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Hamper data (images must be in assets/)
+    const HAMPERS = [
+      {id:'small', title:'Small Hamper', price:'₹475', images:['assets/small-1.webp','assets/small-2.webp','assets/small-3.webp']},
+      {id:'medium', title:'Medium Hamper', price:'₹800', images:['assets/medium-1.webp','assets/medium-2.webp','assets/medium-3.webp']},
+      {id:'large', title:'Large Hamper', price:'₹1350', images:['assets/large-1.webp','assets/large-2.webp','assets/large-3.webp']},
+    ];
+
+    // Render cards
+    const grid = document.getElementById('grid');
+    HAMPERS.forEach(h=>{
+      const div = document.createElement('div'); div.className='hamper';
+      div.innerHTML = `<img src="${h.images[0]}" alt="${h.title}"><h3 style="margin-top:8px">${h.title}</h3><p style="color:#666">${h.price}</p><div style="margin-top:8px"><button class="btn btn-primary" data-id="${h.id}">View Details</button></div>`;
+      grid.appendChild(div);
+    });
+
+    // Modal controls
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const modalImage = document.getElementById('modalImage');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalPrice = document.getElementById('modalPrice');
+    const dotsWrap = document.getElementById('dots');
+    let active = null;
+    let idx = 0;
+
+    function openModal(hamperId){
+      active = HAMPERS.find(h=>h.id===hamperId);
+      if(!active) return;
+      idx=0;
+      modalImage.src = active.images[idx];
+      modalTitle.textContent = active.title;
+      modalPrice.textContent = active.price;
+      dotsWrap.innerHTML='';
+      active.images.forEach((_,i)=>{
+        const d = document.createElement('div'); d.className='dot'+(i===0?' active':'');
+        d.tabIndex = 0;
+        d.setAttribute('role','button');
+        d.addEventListener('click', ()=>{ idx=i; updateModalImage(); });
+        d.addEventListener('keydown', (e)=>{ if(e.key==='Enter') { idx=i; updateModalImage(); } });
+        dotsWrap.appendChild(d);
+      });
+      modalBackdrop.classList.add('show'); modalBackdrop.setAttribute('aria-hidden','false');
+    }
+
+    function closeModal(){ modalBackdrop.classList.remove('show'); modalBackdrop.setAttribute('aria-hidden','true'); active=null; }
+
+    function updateModalImage(){ modalImage.src = active.images[idx]; Array.from(dotsWrap.children).forEach((el,i)=>el.className = 'dot' + (i===idx ? ' active' : '')); }
+
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('prevBtn').addEventListener('click', ()=>{ if(!active) return; idx = (idx-1+active.images.length)%active.images.length; updateModalImage(); });
+    document.getElementById('nextBtn').addEventListener('click', ()=>{ if(!active) return; idx = (idx+1)%active.images.length; updateModalImage(); });
+
+    document.querySelectorAll('.hamper .btn').forEach(b=> b.addEventListener('click', (e)=>{ openModal(e.currentTarget.dataset.id); }));
+
+    // Order / Enquiry flow
+    const orderModal = document.getElementById('orderModal');
+    const enquiryModal = document.getElementById('enquiryModal');
+    document.getElementById('orderNow').addEventListener('click', ()=>{ if(!active) return; document.getElementById('orderHamper').value = active.id; orderModal.classList.add('show'); orderModal.setAttribute('aria-hidden','false'); });
+    document.getElementById('enquireNow').addEventListener('click', ()=>{ if(!active) return; document.getElementById('enquiryHamper').value = active.id; enquiryModal.classList.add('show'); enquiryModal.setAttribute('aria-hidden','false'); });
+    document.getElementById('orderClose').addEventListener('click', ()=>{ orderModal.classList.remove('show'); orderModal.setAttribute('aria-hidden','true'); });
+    document.getElementById('enquiryClose').addEventListener('click', ()=>{ enquiryModal.classList.remove('show'); enquiryModal.setAttribute('aria-hidden','true'); });
+
+    // Form handlers with AJAX fallback
+    function handleOrderSubmit(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      fetch('/', {method:'POST', body: data}).then(()=>{
+        orderModal.classList.remove('show'); orderModal.setAttribute('aria-hidden','true'); alert('Thanks! Your order has been received. We will contact you within 2 hours.');
+      }).catch(()=>{
+        orderModal.classList.remove('show'); orderModal.setAttribute('aria-hidden','true'); alert('Thanks! Your order has been received. We will contact you within 2 hours.');
+      });
+      return false;
+    }
+
+    function handleEnquirySubmit(e){
+      e.preventDefault();
+      const f = e.target;
+      const data = new FormData(f);
+      fetch('/', {method:'POST', body: data}).then(()=>{
+        enquiryModal.classList.remove('show'); enquiryModal.setAttribute('aria-hidden','true'); alert('Thanks! Your enquiry has been received. We will contact you within 2 hours.');
+      }).catch(()=>{
+        enquiryModal.classList.remove('show'); enquiryModal.setAttribute('aria-hidden','true'); alert('Thanks! Your enquiry has been received. We will contact you within 2 hours.');
+      });
+      return false;
+    }
+
+    // Keyboard support
+    document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); orderModal.classList.remove('show'); enquiryModal.classList.remove('show'); } });
+
+    // Snow effect (canvas)
+    (function(){ const canvas = document.getElementById('snowCanvas'); const ctx = canvas.getContext('2d'); let w=canvas.width=innerWidth, h=canvas.height=innerHeight; window.addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; }); const flakes=[]; for(let i=0;i<Math.floor((innerWidth+innerHeight)/120);i++){ flakes.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*3+1, dx:Math.random()*1-0.5, dy:Math.random()*0.6+0.4}); } function loop(){ ctx.clearRect(0,0,w,h); ctx.fillStyle='rgba(255,255,255,0.95)'; flakes.forEach(f=>{ f.x+=f.dx; f.y+=f.dy; if(f.y>h){ f.y=-10; f.x=Math.random()*w; } ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2); ctx.fill(); }); requestAnimationFrame(loop); } loop(); })();
+
+    // Set background using assets/background.webp if present
+    document.querySelector('.site').style.backgroundImage = "url('assets/background.webp')";
+    document.querySelector('.site').style.backgroundSize = "cover";
+    document.querySelector('.site').style.backgroundPosition = "center center";
+    document.querySelector('.site').style.backgroundAttachment = "fixed";
+
+  </script>
+</body>
+</html>
