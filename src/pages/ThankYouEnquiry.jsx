@@ -1,1 +1,0 @@
-import React from 'react';export default function ThankYouEnquiry(){return <div>Thanks for your enquiry!</div>}
