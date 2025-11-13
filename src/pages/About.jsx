@@ -1,1 +1,0 @@
-import React from 'react';export default function About(){return (<div className='max-w-4xl mx-auto p-6'><h1 className='text-3xl mb-3'>About Us</h1><p>Tyoohar Ghar curates premium festive hampers...</p></div>);};
