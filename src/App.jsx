@@ -1,0 +1,2 @@
+import React from 'react';import Header from './components/Header';import Home from './pages/Home';
+export default function App(){return (<><div id="snow-root"></div><Header/><main className="pt-20"><Home/></main></>)}
