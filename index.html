@@ -1,0 +1,669 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Tyoohar Ghar — Festive Hampers & Décor</title>
+  <meta name="description" content="Tyoohar Ghar — curated festive hampers & décor. Free PAN-India shipping." />
+  <meta property="og:title" content="Tyoohar Ghar — Festive Hampers" />
+  <meta property="og:description" content="Curated hampers & décor. Perfect for home celebrations and corporate gifting." />
+  <meta property="og:image" content="assets/og-image.webp" />
+  <link rel="icon" href="assets/favicon-256.webp" />
+  <meta name="theme-color" content="#B30000" />
+  <style>
+    :root{--red:#B30000;--green:#0C3B2E;--gold:#D4AF37;--cream:#fff8f0}
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial;
+      background:#fff;
+      min-height:100vh;
+      line-height:1.4;
+      font-weight:700;
+      color:#111;
+    }
+    a{color:var(--red);text-decoration:none}
+    .site{min-height:100vh;display:flex;flex-direction:column}
+    header{position:fixed;top:0;left:0;right:0;z-index:40;background:linear-gradient(90deg,var(--red),var(--green));color:white;backdrop-filter:blur(4px)}
+    .container{max-width:1600px;margin:0 auto;padding:8px 16px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:64px;display:block}
+    .contact{font-size:13px}
+    main{padding-top:86px;flex:1}
+    .hero{height:460px;display:flex;align-items:center;justify-content:center;background-size:cover;background-position:center;position:relative}
+    .hero .card{background:rgba(0,0,0,0.36);padding:26px;border-radius:12px;color:#fff;text-align:center;max-width:720px}
+    .btn{display:inline-block;padding:10px 16px;border-radius:8px;border:none;cursor:pointer}
+    .btn-primary{display:inline-block;padding:10px 16px;border-radius:8px;border:none;background:var(--red);color:#fff}
+    .section{padding:40px 16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;max-width:1100px;margin:0 auto;padding:0 12px}
+    .hamper{background:#fff;border-radius:10px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,0.06);overflow:hidden;display:flex;flex-direction:column;align-items:stretch}
+    /* image: keep contained and centered, no cropping */
+    .hamper .thumb{
+      width:100%;
+      max-height:200px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border-radius:8px;
+      background:#fff;
+      padding:6px;
+    }
+    .hamper img{
+      width:100%;
+      height:auto;
+      object-fit:contain;
+      display:block;
+      max-height:190px;
+    }
+    .hamper h3{margin:10px 0 6px;font-size:18px}
+    .hamper p{margin:0 0 6px;color:#666}
+    footer{padding:26px;background:#f7f5f3;text-align:center;font-size:14px}
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:60;opacity:0;pointer-events:none;transition:all .18s ease}
+    .modal-backdrop.show{opacity:1;pointer-events:auto}
+    .modal{background:#fff;border-radius:12px;max-width:920px;width:95%;padding:18px;box-shadow:0 18px 40px rgba(0,0,0,0.4)}
+    .modal-left{flex:1;margin-right:12px;display:flex;flex-direction:column;gap:8px}
+    .modal-right{flex:1}
+    /* modal image container: center image and allow it to scale within viewport */
+    .modal-left .modal-img-wrap{
+      width:100%;
+      max-height:70vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+      border-radius:8px;
+      background:#fff;
+      padding:10px;
+    }
+    .modal-left img{width:100%;height:auto;object-fit:contain;display:block;max-height:68vh}
+    .carousel-controls{display:flex;gap:8px;margin-top:8px}
+    .dots{display:flex;gap:6px;margin-top:10px;justify-content:center}
+    .dot{width:10px;height:10px;border-radius:50%;background:#e0e0e0;cursor:pointer}
+    .dot.active{background:var(--red)}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    label{display:block;margin-top:8px}
+    input,textarea,select{width:100%;padding:8px;border-radius:6px;border:1px solid #ddd;margin-top:6px}
+    /* snow canvas */
+    canvas.snow{position:fixed;inset:0;pointer-events:none;z-index:50}
+    /* highlights */
+    .highlights-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:22px;max-width:1100px}
+    .feature-card{background:#fff;border-radius:12px;padding:16px;display:flex;gap:12px;align-items:center;box-shadow:0 8px 20px rgba(0,0,0,0.06);}
+    .story-slide{position:absolute;inset:0;transition:opacity .8s ease}
+    .slider-wrap{position:relative;overflow:hidden}
+    .impact-slide, .test-slide { position:absolute; top:0; width:100%; transition:transform .5s ease; }
+    /* responsive */
+    @media (max-width:900px){
+      .highlights-grid{grid-template-columns:1fr}
+      .brand img{height:60px}
+    }
+    @media (max-width:700px){ .modal{padding:12px} .modal-left img{height:auto} .hero{height:360px} .hamper img{max-height:160px} .hero .card{padding:20px} .grid{padding:0 8px} }
+  </style>
+</head>
+<body>
+  <div class="site full-bg" role="document" style="background-image:url('assets/background.webp');background-size:cover;background-position:center center;background-attachment:fixed;">
+    <header role="banner">
+      <div class="container">
+        <div class="brand">
+          <img src="assets/logo.webp" alt="Tyoohar Ghar logo" id="logo">
+          <div>
+            <div style="font-weight:700">Tyoohar Ghar</div>
+            <div style="font-size:12px;color:#ffe7b5">Your One-Stop Festive Shop</div>
+          </div>
+        </div>
+        <div class="contact" aria-hidden="false">tyooharghar@gmail.com | +91-9599004265 |
+          <a href="https://instagram.com/tyoohar_ghar" style="color:#fff;margin-left:8px">
+            <img src="https://img.icons8.com/?size=100&id=BrU2BBoRXiWq&format=png&color=000000" alt="Instagram" height="22" style="vertical-align:middle;">
+            Instagram
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <main role="main">
+      <section class="hero" id="hero" style="background-image:url('assets/hero-hampers.webp')" aria-label="Hero: Tyoohar Ghar">
+        <div class="card" role="region" aria-labelledby="hero-heading" style="max-width:860px;padding:30px;">
+          <h1 id="hero-heading" style="font-size:36px;margin:0 0 8px;line-height:1.05;">
+            Celebrate Christmas & New Year — Beautiful hampers, delivered across India
+          </h1>
+          <p style="margin:0 0 16px;font-size:16px;opacity:0.95;max-width:720px;">
+            Handcrafted festive hampers and premium décor — shipped free PAN India. Thoughtful gifting, ready to delight your loved ones.
+          </p>
+
+          <div style="margin:0 0 12px;text-align:center;">
+            <a href="#hampers" class="btn-primary" style="padding:12px 18px;border-radius:10px;font-weight:700;display:inline-block;" aria-label="See hampers — free PAN India delivery">
+              See Hampers
+            </a>
+          </div>
+
+          <div style="color:#ffe7b5;font-size:13px;">
+            <div>Ready-to-ship hampers • Quality-checked • Ships fast nationwide</div>
+          </div>
+        </div>
+      </section>
+
+      <section aria-label="Highlights" style="padding:36px 16px;background:linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.06));">
+        <div style="max-width:1100px;margin:0 auto;">
+          <div class="highlights-grid" aria-hidden="false">
+            <div class="feature-card">
+              <div style="width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:linear-gradient(90deg,var(--red),var(--green));color:#fff;font-weight:700">🚚</div>
+              <div>
+                <div style="font-weight:700">Free PAN-India Shipping</div>
+                <div style="font-size:13px;color:#666;margin-top:6px;">Delivered to every doorstep across India — no minimum order.</div>
+              </div>
+            </div>
+
+            <div class="feature-card">
+              <div style="width:48px;height:48px;border-radius:10px;display:grid;place-items:center;background:#f7e7d9;color:#7a4b00;font-weight:700;">✔️</div>
+              <div>
+                <div style="font-weight:700">Quality Checked</div>
+                <div style="font-size:13px;color:#666;margin-top:6px;">Every hamper inspected for premium presentation & freshness.</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display:flex;gap:18px;align-items:stretch;flex-wrap:wrap;margin-bottom:18px;">
+            <div style="flex:1;min-width:280px;">
+              <div id="storyCarousel" style="position:relative;overflow:hidden;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.06);background:#111;min-height:260px;">
+                <div class="story-slide" data-src="assets/story-1.webp" style="opacity:1;padding:22px;display:flex;align-items:center;justify-content:center;color:#fff;">
+                  <div style="max-width:560px;">
+                    <h3 style="margin:0 0 8px;font-size:20px;">Born from small festive moments</h3>
+                    <p style="margin:0;font-size:15px;opacity:0.95;">We began by curating hampers at home — obsessing over every detail until it felt magical. That same care goes into every box we ship today.</p>
+                  </div>
+                </div>
+
+                <div class="story-slide" data-src="assets/story-2.webp" style="opacity:0;padding:22px;display:flex;align-items:center;justify-content:center;">
+                  <div style="max-width:560px;background:rgba(255,255,255,0.88);padding:14px;border-radius:8px;color:#111;">
+                    <h3 style="margin:0 0 8px;font-size:20px;">Made for celebrations, made for you</h3>
+                    <p style="margin:0;font-size:15px;color:#333;">Homes, cafés, offices — our hampers bring warmth, joy, and festive charm wherever they arrive.</p>
+                  </div>
+                </div>
+
+                <div class="story-slide" data-src="assets/story-3.webp" style="opacity:0;padding:22px;display:flex;align-items:center;justify-content:center;color:#fff;">
+                  <div style="max-width:560px;">
+                    <h3 style="margin:0 0 8px;font-size:20px;">Sustainably considerate</h3>
+                    <p style="margin:0;font-size:15px;opacity:0.95;">We design our hampers to look beautiful without waste — premium packaging that feels thoughtful, not excessive.</p>
+                  </div>
+                </div>
+
+                <button id="storyPrev" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer;">‹</button>
+                <button id="storyNext" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.5);color:#fff;border:none;padding:8px 10px;border-radius:8px;cursor:pointer;">›</button>
+              </div>
+            </div>
+
+            <div class="right-column-centered" style="flex:0 0 320px;min-width:260px;display:flex;flex-direction:column;gap:12px;align-items:center;margin:0 auto;">
+              <div style="background:#fff;border-radius:12px;padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.06);width:100%;max-width:320px;">
+                <div style="font-weight:700;margin-bottom:6px;">Our promise</div>
+                <div style="font-size:13px;color:#555;">Curated quality, thoughtful packaging, and free nationwide delivery — every time.</div>
+              </div>
+
+              <div id="animBadge" style="background:linear-gradient(90deg,var(--red),var(--green));border-radius:12px;padding:14px;color:#fff;display:flex;gap:8px;align-items:center;width:100%;max-width:320px;">
+                <div style="width:48px;height:48px;border-radius:10px;background:rgba(255,255,255,0.12);display:grid;place-items:center;font-weight:700;">★</div>
+                <div>
+                  <div style="font-weight:700;">Handpicked selections</div>
+                  <div style="font-size:13px;opacity:0.95;">Fresh festive hampers chosen weekly by our team.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-bottom:14px;">
+            <div style="font-weight:700;font-size:18px;color:#222;margin-bottom:10px;">Why customers love us</div>
+            <div id="impactWrap" class="slider-wrap" style="height:120px;border-radius:12px;overflow:hidden;position:relative;">
+              <button id="impactPrev" aria-label="Previous impact" style="position:absolute;left:8px;top:50%;transform:translateY(-50%);z-index:6;background:#fff;border:none;padding:6px 8px;border-radius:8px;cursor:pointer;">‹</button>
+              <button id="impactNext" aria-label="Next impact" style="position:absolute;right:8px;top:50%;transform:translateY(-50%);z-index:6;background:#fff;border:none;padding:6px 8px;border-radius:8px;cursor:pointer;">›</button>
+            </div>
+          </div>
+
+          <div style="margin-top:6px;background:linear-gradient(90deg, rgba(255,255,255,0.98), rgba(255,255,255,0.96));padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(0,0,0,0.06);">
+            <div style="font-weight:700;margin-bottom:10px;">What customers say</div>
+            <div id="testimonials" class="slider-wrap" style="position:relative;overflow:hidden;height:110px;"></div>
+
+            <div style="display:flex;justify-content:center;gap:8px;margin-top:10px;">
+              <button id="prevTest" style="border:none;background:#f1f1f1;padding:6px 10px;border-radius:8px;cursor:pointer;">Prev</button>
+              <button id="nextTest" style="border:none;background:#f1f1f1;padding:6px 10px;border-radius:8px;cursor:pointer;">Next</button>
+            </div>
+          </div>
+
+        </div>
+
+        <script>
+          (function(){
+            try {
+              const slides = document.querySelectorAll('#storyCarousel .story-slide');
+              slides.forEach(s => {
+                const src = s.getAttribute('data-src');
+                if(src) s.style.backgroundImage = `url("${src}")`;
+                s.style.backgroundSize = 'cover';
+                s.style.backgroundPosition = 'center';
+              });
+            } catch (e) {}
+          })();
+        </script>
+      </section>
+
+      <section class="section" id="hampers" aria-labelledby="hampersHeading">
+        <h2 id="hampersHeading" style="text-align:center;margin:0 0 18px;font-size:24px; color:#111; text-decoration:underline;">Our Hampers</h2>
+        <div class="grid" id="grid" aria-live="polite"></div>
+      </section>
+
+      <section class="section" aria-label="About">
+        <div style="max-width:900px;margin:0 auto;padding:26px;border-radius:12px;background:rgba(0,0,0,0.36);color:#fff;">
+          <h3 style="margin-bottom:5px; text-decoration:underline;">Who we serve</h3>
+          <p style="margin-top:0;">
+            From homes filled with laughter to cafés, bakeries, studios, and corporate spaces —
+            everyone deserves a touch of festive magic. No matter where you are in India, we deliver with free shipping.
+          </p>
+
+          <h3 style="margin-bottom:5px; margin-top:20px;text-decoration:underline;">How orders work</h3>
+          <ol style="margin-top:0;">
+            <li>View our hampers and click “Order Now”.</li>
+            <li>Fill the order form — we will contact you within 2 hours for payment & delivery confirmation.</li>
+            <li>For pan-India bulk orders (min 5 hampers), shipping costs will be discussed during confirmation.</li>
+          </ol>
+        </div>
+      </section>
+
+    </main>
+
+    <footer role="contentinfo" style="background:linear-gradient(90deg, var(--red), var(--green));">
+      <div style="max-width:1100px;margin:0 auto;padding:8px 12px;text-align:center">
+        <div style="color:white;">© <span id="year"></span> Tyoohar Ghar</div>
+        <div style="margin-top:8px;font-size:13px;color:white;">
+          Designed for quick festive celebrations. Reach us at
+          <a href="mailto:tyooharghar@gmail.com" style="color:white; text-decoration:underline;">tyooharghar@gmail.com</a>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Modal markup -->
+    <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button id="modalClose"
+        aria-label="Close modal"
+        style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer;color:white;">×</button>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap">
+          <div class="modal-left" style="flex:1">
+            <div class="modal-img-wrap">
+              <img id="modalImage" src="" alt="Hamper image">
+            </div>
+            <div class="carousel-controls" style="display:flex;gap:8px;margin-top:8px">
+              <button id="prevBtn" class="btn" aria-label="Previous image">Prev</button>
+              <button id="nextBtn" class="btn" aria-label="Next image">Next</button>
+            </div>
+            <div class="dots" id="dots" role="tablist" aria-label="Image carousel navigation"></div>
+          </div>
+          <div class="modal-right" style="flex:1">
+            <h3 id="modalTitle"></h3>
+            <p id="modalPrice" style="color:#666"></p>
+            <p id="modalDescription" style="color:#333"></p>
+            <div style="margin-top:14px" class="row">
+              <button id="orderNow" class="btn btn-primary">Order Now</button>
+              <button id="enquireNow" class="btn">Enquire</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="orderModal" class="modal-backdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button id="orderClose"
+        aria-label="Close order form"
+        style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer;color:white;">×</button>
+
+        <h3>Place your order</h3>
+        <form name="order-form" method="POST" data-netlify="true" onsubmit="return handleOrderSubmit(event)">
+          <input type="hidden" name="form-name" value="order-form">
+          <input type="hidden" name="hamper" id="orderHamper">
+          <label>Name <input name="name" required></label>
+          <label>Phone <input name="phone" required placeholder="10-digit mobile"></label>
+          <label>Email <input name="email" placeholder="your@email.com"></label>
+          <label>Address <textarea name="address"></textarea></label>
+          <label>Quantity <input name="quantity" type="number" value="1" min="1"></label>
+          <div style="margin-top:12px"><button class="btn btn-primary" type="submit">Submit Order</button></div>
+        </form>
+      </div>
+    </div>
+
+    <div id="enquiryModal" class="modal-backdrop" aria-hidden="true">
+      <div class="modal" role="dialog" aria-modal="true">
+        <button id="enquiryClose" 
+        aria-label="Close enquiry form" 
+        style="position:absolute;right:14px;top:10px;border:none;background:transparent;font-size:22px;cursor:pointer;color:white;">×</button>
+
+        <h3>Send an enquiry</h3>
+        <form name="enquiry-form" method="POST" data-netlify="true" onsubmit="return handleEnquirySubmit(event)">
+          <input type="hidden" name="form-name" value="enquiry-form">
+          <input type="hidden" name="hamper" id="enquiryHamper">
+          <label>Name <input name="name" required></label>
+          <label>Phone <input name="phone" required placeholder="10-digit mobile"></label>
+          <label>Email <input name="email" placeholder="your@email.com"></label>
+          <label>Company <input name="company"></label>
+          <label>Quantity <input name="quantity" type="number" value="30" min="1"></label>
+          <label>Message <textarea name="message"></textarea></label>
+          <div style="margin-top:12px"><button class="btn btn-primary" type="submit">Submit Enquiry</button></div>
+        </form>
+      </div>
+    </div>
+
+    <form name="order-netlify" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+      <input type="hidden" name="form-name" value="order-form" />
+      <input name="bot-field" />
+    </form>
+    <form name="enquiry-netlify" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+      <input type="hidden" name="form-name" value="enquiry-form" />
+      <input name="bot-field" />
+    </form>
+
+    <a class="whatsapp" id="whatsappBtn" href="https://wa.me/919599004265?text=Hello%20Tyoohar%20Ghar%2C%20I%27d%20like%20to%20order%20hampers." target="_blank" rel="noreferrer" aria-label="WhatsApp order">WhatsApp</a>
+
+    <canvas class="snow" id="snowCanvas" aria-hidden="true"></canvas>
+  </div>
+
+  <script>
+    // Simple validation helpers
+    function isValidPhone(s){ return /^\d{10}$/.test((s||'').trim()); }
+    function isValidEmail(s){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((s||'').trim()); }
+
+    // HAMPERS data (updated as you provided)
+    const HAMPERS = [
+      {
+        id:'snowflake-mini',
+        title:'Snowflake Mini Hamper',
+        price:'₹475/-',
+        images:['assets/small-1.webp','assets/small-2.webp','assets/small-3.webp','assets/small-4.webp','assets/small-5.webp','assets/small-6.webp','assets/small-7.webp'],
+        description: 'Includes - Snow Dusted Christmas Pine Tree (1 ft), Glitter baubles and Candy Cane, Decorative Stocking, Red Santa Hat, Snow balls and stars (foam ornaments), Glitter balls/decorative drum/gift box/Golden bell.'
+      },
+      {
+        id:'evergreen-classic',
+        title:'Evergreen Classic Hamper',
+        price:'₹880/-',
+        images:['assets/medium-1.webp','assets/medium-2.webp','assets/medium-3.webp','assets/medium-4.webp','assets/medium-5.webp','assets/medium-6.webp','assets/medium-7.webp','assets/medium-8.webp','assets/medium-9.webp','assets/medium-10.webp'],
+        description: 'Includes - Snow Dusted Christmas Pine Tree (1 ft), Glitter baubles and Candy Cane, Decorative Stocking, Red Santa Hat, Snow balls and stars (foam ornaments), Glitter balls/decorative drum/gift box/Golden bell, Green tinsel Christmas Garland, Golden triple bell ornament, Bouncy Santa Headband, Reindeer Christmas glasses, Warm white LED string light.'
+      },
+      {
+        id:'santa-grande',
+        title:'Santa Grande Hamper',
+        price:'₹1450/-',
+        images:['assets/large-1.webp','assets/large-2.webp','assets/large-3.webp','assets/large-4.webp','assets/large-5.webp','assets/large-6.webp','assets/large-7.webp','assets/large-8.webp','assets/large-9.webp','assets/large-10.webp'],
+        description: 'Includes - Snow Dusted Christmas Pine Tree (1 ft), Glitter baubles and Candy Cane, Decorative Stocking (X2), Red Santa Hat (X2), Snow balls and stars (foam ornaments), Glitter balls/decorative drum/gift box/Golden bell, Green tinsel Christmas Garland (X2), Premium Christmas Wreath with Bow and Roses, Bouncy Santa Headband (X2), Reindeer Christmas glasses (X2), Warm white LED string light (X2).'
+      }
+    ];
+
+    // DOM ready
+    document.addEventListener('DOMContentLoaded', function(){
+      // set year
+      const y = document.getElementById('year'); if(y) y.textContent = new Date().getFullYear();
+
+      // fallback background
+      try {
+        const site = document.querySelector('.site');
+        if(site){
+          site.style.backgroundImage = "url('assets/background.webp')";
+          site.style.backgroundSize = 'cover';
+          site.style.backgroundPosition = 'center center';
+          site.style.backgroundAttachment = 'fixed';
+        }
+      } catch(e){}
+
+      // render hampers
+      const grid = document.getElementById('grid');
+      if(grid){
+        grid.innerHTML = '';
+        HAMPERS.forEach(h=>{
+          const div = document.createElement('div'); div.className = 'hamper';
+          const imgSrc = (h.images && h.images.length) ? h.images[0] : 'assets/placeholder.webp';
+          div.innerHTML = `
+            <div class="thumb"><img src="${imgSrc}" alt="${h.title}"></div>
+            <h3 style="margin-top:8px;color:#000">${h.title}</h3>
+            <p style="color:#666;margin:6px 0 0">${h.price}</p>
+            <div style="margin-top:8px">
+              <button class="btn btn-primary view-details" data-id="${h.id}">View Details</button>
+              <button class="btn enquire" data-id="${h.id}" style="margin-left:8px">Enquire</button>
+            </div>`;
+          grid.appendChild(div);
+        });
+      }
+
+      initCarousels();
+      initModalHandlers();
+      initImpactAndTestimonials();
+      initFormHandlers();
+      initSnow();
+    });
+
+    /* Modal and image carousel logic */
+    let active = null, activeIdx = 0;
+    function initModalHandlers(){
+      const modalClose = document.getElementById('modalClose');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const orderNow = document.getElementById('orderNow');
+      const enquireNow = document.getElementById('enquireNow');
+
+      document.addEventListener('click', function(e){
+        const v = e.target.closest('.view-details');
+        if(v){ openModal(v.dataset.id); return; }
+        const q = e.target.closest('.enquire');
+        if(q){
+          document.getElementById('enquiryHamper').value = q.dataset.id;
+          document.getElementById('enquiryModal').classList.add('show');
+          document.getElementById('enquiryModal').setAttribute('aria-hidden','false');
+        }
+      });
+
+      if(modalClose) modalClose.addEventListener('click', closeModal);
+      if(prevBtn) prevBtn.addEventListener('click', ()=>{ if(!active) return; activeIdx = (activeIdx-1 + active.images.length) % active.images.length; updateModal(); });
+      if(nextBtn) nextBtn.addEventListener('click', ()=>{ if(!active) return; activeIdx = (activeIdx+1) % active.images.length; updateModal(); });
+      if(orderNow) orderNow.addEventListener('click', ()=>{ if(!active) return; document.getElementById('orderHamper').value = active.id; document.getElementById('orderModal').classList.add('show'); document.getElementById('orderModal').setAttribute('aria-hidden','false'); });
+      if(enquireNow) enquireNow.addEventListener('click', ()=>{ if(!active) return; document.getElementById('enquiryHamper').value = active.id; document.getElementById('enquiryModal').classList.add('show'); document.getElementById('enquiryModal').setAttribute('aria-hidden','false'); });
+
+      document.getElementById('orderClose').addEventListener('click', ()=>{ document.getElementById('orderModal').classList.remove('show'); document.getElementById('orderModal').setAttribute('aria-hidden','true'); });
+      document.getElementById('enquiryClose').addEventListener('click', ()=>{ document.getElementById('enquiryModal').classList.remove('show'); document.getElementById('enquiryModal').setAttribute('aria-hidden','true'); });
+
+      document.addEventListener('keydown', (e)=>{ if(e.key==='Escape'){ closeModal(); document.getElementById('orderModal').classList.remove('show'); document.getElementById('enquiryModal').classList.remove('show'); } });
+    }
+
+    function openModal(hamperId){
+      active = HAMPERS.find(h=>h.id===hamperId);
+      if(!active) return;
+      activeIdx = 0;
+      updateModal();
+      const mb = document.getElementById('modalBackdrop'); if(mb){ mb.classList.add('show'); mb.setAttribute('aria-hidden','false'); }
+    }
+
+    function updateModal(){
+      const img = document.getElementById('modalImage');
+      const title = document.getElementById('modalTitle');
+      const price = document.getElementById('modalPrice');
+      const desc = document.getElementById('modalDescription');
+      const dotsWrap = document.getElementById('dots');
+      if(!active || !img || !title || !price || !desc || !dotsWrap) return;
+      img.src = active.images[activeIdx] || 'assets/placeholder.webp';
+      title.textContent = active.title;
+      price.textContent = active.price;
+      desc.textContent = active.description || '';
+      dotsWrap.innerHTML = '';
+      (active.images || []).forEach((_,i)=>{
+        const d = document.createElement('div'); d.className = 'dot' + (i===activeIdx ? ' active' : '');
+        d.tabIndex = 0;
+        d.addEventListener('click', ()=>{ activeIdx = i; updateModal(); });
+        d.addEventListener('keydown', (e)=>{ if(e.key==='Enter'){ activeIdx = i; updateModal(); } });
+        dotsWrap.appendChild(d);
+      });
+    }
+
+    function closeModal(){ const mb = document.getElementById('modalBackdrop'); if(mb){ mb.classList.remove('show'); mb.setAttribute('aria-hidden','true'); } active=null; }
+
+    /* Carousels & testimonials & impact */
+    function initCarousels(){
+      (function(){
+        const slides = Array.from(document.querySelectorAll('#storyCarousel .story-slide'));
+        if(!slides.length) return;
+        slides.forEach((s,idx)=> s.style.opacity = idx===0 ? '1' : '0');
+        let idx = 0, t;
+        function show(n){ slides.forEach((sl,i)=> sl.style.opacity = i===n ? '1' : '0'); }
+        t = setInterval(()=>{ idx = (idx+1) % slides.length; show(idx); }, 4800);
+        const prev = document.getElementById('storyPrev'), next = document.getElementById('storyNext');
+        if(prev) prev.addEventListener('click', ()=>{ idx = (idx-1+slides.length)%slides.length; show(idx); reset(); });
+        if(next) next.addEventListener('click', ()=>{ idx = (idx+1)%slides.length; show(idx); reset(); });
+        function reset(){ clearInterval(t); t = setInterval(()=>{ idx = (idx+1)%slides.length; show(idx); }, 4800); }
+      })();
+    }
+
+    function initImpactAndTestimonials(){
+      (function(){
+        const impactData = [
+          {title:'Sustainable Packaging', text:'We use minimal, recyclable materials without compromising the premium look.'},
+          {title:'Value for Money', text:'Curated items that feel premium — at prices that make sense.'},
+          {title:'Fast Nationwide Delivery', text:'Timely shipments with careful handling across India.'},
+          {title:'Corporate Friendly', text:'Bulk orders and custom invoices for seamless gifting.'},
+          {title:'Handpicked Selections', text:'Each hamper is assembled with a human touch — not a machine.'}
+        ];
+        const wrap = document.getElementById('impactWrap');
+        if(!wrap) return;
+        impactData.forEach((s,idx)=>{
+          const slide = document.createElement('div');
+          slide.className = 'impact-slide';
+          slide.style.left = (idx*100) + '%';
+          slide.style.top = '0';
+          slide.style.height = '100%';
+          slide.style.display = 'flex';
+          slide.style.alignItems = 'center';
+          slide.style.justifyContent = 'center';
+          slide.style.padding = '18px';
+          slide.innerHTML = `<div style="background:#fff;border-radius:10px;padding:14px;box-shadow:0 8px 20px rgba(0,0,0,0.06);max-width:900px;width:calc(100% - 48px);">
+            <div style="font-weight:700">${s.title}</div>
+            <div style="font-size:14px;color:#555;margin-top:6px">${s.text}</div>
+          </div>`;
+          wrap.appendChild(slide);
+        });
+        const slides = Array.from(wrap.querySelectorAll('.impact-slide'));
+        if(!slides.length) return;
+        let idx = 0, timer;
+        function show(n){ slides.forEach((sl,i)=> sl.style.transform = `translateX(${(i-n)*100}%)`); }
+        show(0);
+        function start(){ timer = setInterval(()=>{ idx = (idx+1) % slides.length; show(idx); }, 3800); }
+        function reset(){ clearInterval(timer); start(); }
+        start();
+        document.getElementById('impactPrev').addEventListener('click', ()=>{ idx = (idx-1+slides.length)%slides.length; show(idx); reset(); });
+        document.getElementById('impactNext').addEventListener('click', ()=>{ idx = (idx+1)%slides.length; show(idx); reset(); });
+      })();
+
+      (function(){
+        const TESTIMONIALS = [
+          {name:'Asha K., Delhi', text:'Lovely hamper — arrived on time and everyone loved it.'},
+          {name:'Ravi S., Mumbai', text:'Great value and free shipping — perfect for our office gifting.'},
+          {name:'Simran P., Chennai', text:'Premium packaging and fast delivery — loved everything.'},
+          {name:'Nisha D., Bengaluru', text:'The hamper was a hit at our Christmas brunch. Beautifully packed.'},
+          {name:'Prateek M., Pune', text:'Friendly service and quick answers from the team. Highly recommended.'},
+          {name:'Lina R., Kolkata', text:'Personal touch in every box — feels special and thoughtful.'},
+          {name:'S. Verma, Ahmedabad', text:'Corporate order went smoothly. Bulk packing was neat and on time.'},
+          {name:'Meera J., Hyderabad', text:'Good selection and lovely presentation. My guests asked where I ordered from.'},
+          {name:'Amit C., Gurgaon', text:'Well-priced for the quality. Will reorder for our Diwali gifting.'},
+          {name:'Priya N., Jaipur', text:'Great customer support and packaging that protects fragile items.'}
+        ];
+        const wrap = document.getElementById('testimonials');
+        if(!wrap) return;
+        TESTIMONIALS.forEach((t,idx)=>{
+          const slide = document.createElement('div');
+          slide.className = 'test-slide';
+          slide.style.left = (idx*100) + '%';
+          slide.style.top = '0';
+          slide.style.height = '100%';
+          slide.style.display = 'flex';
+          slide.innerHTML = `
+            <div style="display:flex;gap:12px;align-items:center;">
+              <div style="width:44px;height:44px;border-radius:999px;background:#f7e7d5;display:grid;place-items:center;font-weight:700;">${t.name.charAt(0)}</div>
+              <div>
+                <div style="font-weight:700">${t.name}</div>
+                <div style="font-size:13px;color:#555">${t.text}</div>
+              </div>
+            </div>
+          `;
+          wrap.appendChild(slide);
+        });
+        const slides = Array.from(wrap.querySelectorAll('.test-slide'));
+        if(!slides.length) return;
+        slides.forEach((s,idx) => s.style.transform = `translateX(${idx*100}%)`);
+        let i = 0, tmr;
+        function show(n){ slides.forEach((s,idx)=> s.style.transform = `translateX(${(idx-n)*100}%)`); }
+        function start(){ tmr = setInterval(()=>{ i = (i+1) % slides.length; show(i); }, 4200); }
+        function reset(){ clearInterval(tmr); start(); }
+        start();
+        document.getElementById('prevTest').addEventListener('click', ()=>{ i=(i-1+slides.length)%slides.length; show(i); reset(); });
+        document.getElementById('nextTest').addEventListener('click', ()=>{ i=(i+1)%slides.length; show(i); reset(); });
+      })();
+    }
+
+    /* Forms validation and submit */
+    function initFormHandlers(){
+      window.handleOrderSubmit = function(e){
+        e.preventDefault();
+        const f = e.target;
+        const phone = (f.querySelector('[name="phone"]')||{value:''}).value;
+        const email = (f.querySelector('[name="email"]')||{value:''}).value;
+        if(!isValidPhone(phone)){ alert('Please enter a valid 10-digit phone number (digits only).'); return false; }
+        if(email && !isValidEmail(email)){ alert('Please provide a valid email address (or leave blank).'); return false; }
+        const data = new FormData(f);
+        fetch('/', {method:'POST', body: data}).then(()=>{
+          f.reset();
+          document.getElementById('orderModal').classList.remove('show');
+          alert('Thanks! Your order has been received. We will contact you within 2 hours.');
+        }).catch(()=>{
+          f.reset();
+          document.getElementById('orderModal').classList.remove('show');
+          alert('Thanks! Your order has been received. We will contact you within 2 hours.');
+        });
+        return false;
+      };
+
+      window.handleEnquirySubmit = function(e){
+        e.preventDefault();
+        const f = e.target;
+        const phone = (f.querySelector('[name="phone"]')||{value:''}).value;
+        const email = (f.querySelector('[name="email"]')||{value:''}).value;
+        if(!isValidPhone(phone)){ alert('Please enter a valid 10-digit phone number (digits only).'); return false; }
+        if(email && !isValidEmail(email)){ alert('Please provide a valid email address (or leave blank).'); return false; }
+        const data = new FormData(f);
+        fetch('/', {method:'POST', body: data}).then(()=>{
+          f.reset();
+          document.getElementById('enquiryModal').classList.remove('show');
+          alert('Thanks! Your enquiry has been received. We will contact you within 2 hours.');
+        }).catch(()=>{
+          f.reset();
+          document.getElementById('enquiryModal').classList.remove('show');
+          alert('Thanks! Your enquiry has been received. We will contact you within 2 hours.');
+        });
+        return false;
+      };
+    }
+
+    /* Snow effect (unchanged) */
+    function initSnow(){
+      try {
+        const canvas = document.getElementById('snowCanvas');
+        const ctx = canvas.getContext && canvas.getContext('2d');
+        if(!ctx) return;
+        let w=canvas.width=innerWidth, h=canvas.height=innerHeight;
+        window.addEventListener('resize', ()=>{ w=canvas.width=innerWidth; h=canvas.height=innerHeight; });
+        const flakes=[];
+        for(let i=0;i<Math.floor((innerWidth+innerHeight)/120);i++){
+          flakes.push({x:Math.random()*w, y:Math.random()*h, r:Math.random()*3+1, dx:Math.random()*1-0.5, dy:Math.random()*0.6+0.4});
+        }
+        function loop(){
+          ctx.clearRect(0,0,w,h);
+          ctx.fillStyle='rgba(255,255,255,0.95)';
+          flakes.forEach(f=>{ f.x+=f.dx; f.y+=f.dy; if(f.y>h){ f.y=-10; f.x=Math.random()*w; } ctx.beginPath(); ctx.arc(f.x,f.y,f.r,0,Math.PI*2); ctx.fill(); });
+          requestAnimationFrame(loop);
+        }
+        loop();
+      } catch(e){}
+    }
+  </script>
+</body>
+</html>
