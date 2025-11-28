@@ -100,6 +100,101 @@
       .brand img{height:60px}
     }
     @media (max-width:700px){ .modal{padding:12px} .modal-left img{height:auto} .hero{height:360px} .hamper img{max-height:160px} .hero .card{padding:20px} .grid{padding:0 8px} }
+   
+    /* ----------- MOBILE FIXES  ----------- */
+@media (max-width: 700px) {
+
+  /* HERO */
+  .hero {
+    height: 340px !important;
+    padding: 0 14px !important;
+  }
+  .hero .card {
+    padding: 18px !important;
+    max-width: 96% !important;
+  }
+  .hero h1 {
+    font-size: 24px !important;
+    line-height: 1.2 !important;
+  }
+  .hero p {
+    font-size: 14px !important;
+    margin-bottom: 12px !important;
+  }
+
+  /* HAMPER GRID */
+  .grid {
+    grid-template-columns: 1fr !important;
+    gap: 20px !important;
+  }
+  .hamper {
+    min-height: auto !important;
+  }
+  .hamper img {
+    max-height: 150px !important;
+    padding: 4px !important;
+  }
+
+  /* PRICE BADGE */
+  .price-badge {
+    right: 8px !important;
+    bottom: 8px !important;
+    padding: 6px 10px !important;
+    font-size: 12px !important;
+  }
+
+  /* STORY CAROUSEL */
+  #storyCarousel {
+    min-height: 200px !important;
+  }
+  #storyCarousel h3 {
+    font-size: 16px !important;
+  }
+  #storyCarousel p {
+    font-size: 13px !important;
+  }
+
+  /* FEATURE BOXES */
+  section[aria-label="Highlights"] > div > div:nth-child(1) {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+  }
+  .right-column-centered {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    width: 100% !important;
+  }
+
+  /* TESTIMONIAL HEIGHT FIX */
+  #testimonials {
+    height: auto !important;
+    min-height: 110px !important;
+    padding-bottom: 10px !important;
+  }
+  #testimonials .test-slide > div {
+    align-items: flex-start !important;
+  }
+
+  /* ABOUT SECTION BOX */
+  section[aria-label="About"] > div {
+    padding: 20px !important;
+    margin: 0 10px !important;
+  }
+
+  /* FOOTER */
+  footer div {
+    padding: 12px !important;
+  }
+  footer {
+    padding: 10px !important;
+  }
+
+  /* BACKGROUND FIX */
+  .site {
+    background-attachment: scroll !important;
+  }
+}
+
   </style>
 </head>
 <body>
