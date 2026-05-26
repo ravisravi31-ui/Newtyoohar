@@ -1,0 +1,200 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { scroll-behavior: smooth; }
+
+  body {
+    @apply bg-cream-100 text-navy-brand font-body antialiased;
+  }
+
+  h1, h2, h3, h4 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+  /* ── Buttons ─────────────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center gap-2 bg-rose-brand text-white font-body font-semibold
+           px-6 py-3 rounded-full transition-all duration-200
+           hover:bg-rose-dark hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center gap-2 border-2 border-rose-brand text-rose-brand font-body font-semibold
+           px-6 py-3 rounded-full transition-all duration-200
+           hover:bg-rose-brand hover:text-white hover:shadow-lg hover:-translate-y-0.5;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center gap-2 bg-[#25D366] text-white font-body font-semibold
+           px-6 py-3 rounded-full transition-all duration-200
+           hover:bg-[#1ebe59] hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+  }
+
+  /* ── Typography ──────────────────────────────────────────────── */
+  .section-title {
+    @apply font-display text-2xl sm:text-3xl md:text-4xl text-navy-brand leading-tight;
+  }
+
+  .section-subtitle {
+    @apply font-body text-base md:text-lg text-navy-light leading-relaxed;
+  }
+
+  /* ── Cards ───────────────────────────────────────────────────── */
+  .card {
+    @apply bg-white rounded-2xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden;
+  }
+
+  /* Card with shimmer border on hover */
+  .card-shimmer {
+    @apply relative;
+  }
+  .card-shimmer::before {
+    content: '';
+    @apply absolute inset-0 rounded-3xl opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, theme('colors.gold.brand') 0%, transparent 50%, theme('colors.rose.brand') 100%);
+    padding: 1px;
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: destination-out;
+    mask-composite: exclude;
+  }
+  .card-shimmer:hover::before {
+    @apply opacity-30;
+  }
+
+  /* Hover lift effect */
+  .hover-lift {
+    @apply transition-all duration-300;
+  }
+  .hover-lift:hover {
+    @apply -translate-y-1 shadow-lg;
+  }
+
+  /* ── Prose ───────────────────────────────────────────────────── */
+  .prose-brand {
+    @apply font-body text-navy-mid leading-relaxed;
+  }
+  .prose-brand h2 { @apply font-display text-2xl text-navy-brand mt-8 mb-3; }
+  .prose-brand h3 { @apply font-display text-xl text-navy-brand mt-6 mb-2; }
+  .prose-brand p  { @apply mb-4 text-navy-mid leading-7; }
+  .prose-brand ul { @apply list-disc list-inside mb-4 space-y-1 text-navy-mid; }
+  .prose-brand strong { @apply font-semibold text-navy-brand; }
+}
+
+@layer utilities {
+  /* Shimmer loading skeleton */
+  .shimmer {
+    background: linear-gradient(90deg, #f0ebe4 25%, #e8e2db 50%, #f0ebe4 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Scroll-reveal base state */
+  .reveal {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Keyframe Animations ─────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.95); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.7; }
+}
+
+/* ── Animation Classes ─────────────────────────────────────────── */
+.animate-slideDown  { animation: slideDown  0.25s ease forwards; }
+.animate-fade-in    { animation: fadeIn     0.3s ease forwards; }
+.animate-fade-up    { animation: fadeUp     0.5s ease forwards; }
+.animate-scale-in   { animation: scaleIn    0.3s ease forwards; }
+.animate-pulse-soft { animation: pulse-soft 2s ease-in-out infinite; }
+.animate-modalIn    { animation: modalIn    0.3s cubic-bezier(0.34,1.56,0.64,1) forwards; }
+.animate-slideLeft  { animation: slideLeft  0.35s cubic-bezier(0.22,1,0.36,1) forwards; }
+
+@keyframes modalIn {
+  from { opacity: 0; transform: scale(0.93) translateY(10px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes slideLeft {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+/* ── Scrollbar ─────────────────────────────────────────────────── */
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #FDF8F3; }
+::-webkit-scrollbar-thumb { background: #C9784A; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #b06840; }
+
+/* ── Images ─────────────────────────────────────────────────────── */
+img { transition: opacity 0.3s ease; }
+
+/* ── Tooltip ─────────────────────────────────────────────────────── */
+[data-tooltip] {
+  position: relative;
+}
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%) translateY(4px);
+  background: theme('colors.navy.brand');
+  color: theme('colors.cream.200');
+  font-family: theme('fontFamily.body');
+  font-size: 0.7rem;
+  white-space: nowrap;
+  padding: 4px 10px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  z-index: 50;
+}
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ── Gold accent divider ─────────────────────────────────────────── */
+.divider-gold {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, theme('colors.gold.brand'), transparent);
+  border: none;
+}
+
+/* ── Focus styles ─────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid theme('colors.rose.brand');
+  outline-offset: 3px;
+  border-radius: 4px;
+}
