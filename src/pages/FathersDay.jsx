@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead.jsx';
 import HamperGallery from '../components/HamperGallery.jsx';
+<<<<<<< HEAD
 import { useCart } from '../context/CartContext.jsx';
+=======
+import Countdown from '../components/Countdown.jsx';
+>>>>>>> 84cac1d (Father's Day: optimized hamper photos, countdown, hero photos)
 
 const hampers = [
   {
@@ -44,15 +48,23 @@ export default function FathersDay() {
       />
 
       {/* Hero */}
-      <section className="bg-gradient-to-br from-gold-pale via-cream-200 to-rose-pale py-16 md:py-24">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+      <section className="relative py-16 md:py-28 overflow-hidden">
+        {/* Background photo + overlay */}
+        <img
+          src="/images/hampers/fd-cool-dad-box/Hamper.webp"
+          alt="Father's Day gift hamper by Tyoohar Ghar"
+          className="absolute inset-0 w-full h-full object-cover"
+          loading="eager"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-navy-brand/85 via-navy-brand/75 to-rose-brand/70" />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <span className="inline-block bg-rose-brand text-white font-body text-xs font-semibold px-4 py-1.5 rounded-full mb-5 animate-pulse">
             🔥 Order by June 18 for on-time delivery
           </span>
-          <h1 className="font-display text-4xl md:text-5xl text-navy-brand mb-5 leading-tight">
+          <h1 className="font-display text-4xl md:text-5xl text-white mb-5 leading-tight">
             Father's Day Gift Hampers India 2026
           </h1>
-          <p className="font-body text-lg text-navy-mid max-w-2xl mx-auto mb-8 leading-relaxed">
+          <p className="font-body text-lg text-cream-200 max-w-2xl mx-auto mb-8 leading-relaxed">
             Give Dad more than a card this Father's Day (June 21, 2026). Our premium curated hampers start at ₹999,
             come with a personalised handwritten card, and deliver free across India.
           </p>
@@ -66,7 +78,10 @@ export default function FathersDay() {
             </a>
             <a href="#hampers" className="btn-outline text-base px-7 py-3.5">See Hampers ↓</a>
           </div>
-          <p className="font-body text-sm text-navy-light mt-5">
+          <div className="mt-9 flex justify-center">
+            <Countdown target="2026-06-21T00:00:00+05:30" />
+          </div>
+          <p className="font-body text-sm text-cream-300 mt-5">
             📦 Free PAN India delivery · ✍️ Handwritten card included · ⏱ Dispatched in 24–48 hrs
           </p>
         </div>

@@ -19,9 +19,9 @@
 export const hamperImages = {
 
   // ── FATHER'S DAY ──────────────────────────────────────────────
-  'fd-dads-treat':       ['Hamper.png', 'Assorted cookies.png', 'Dark chocolates.png', 'Premium mixed nuts.png', 'Personalised card.png'],
-  'fd-cool-dad-box':     ['Hamper.png', 'Artisan coffee.png', 'Premium tea.png', 'Gourmet snacks.png', 'Scented candle.png', 'Personalised card.png'],
-  'fd-grand-dad-hamper': ['Hamper.png', 'Premium whiskey glass set.png', 'Dark chocolates.png', 'Personalised leather tag.png', 'Luxury nuts & dates.png', 'Keepsake box.png', 'Personalised card.png'],
+  'fd-dads-treat':       ['Hamper.webp', 'Premium mixed nuts.webp', 'Dark chocolates.webp', 'Assorted cookies.webp', 'Personalised card.webp'],
+  'fd-cool-dad-box':     ['Hamper.webp', 'Artisan coffee.webp', 'Premium tea.webp', 'Gourmet snacks.webp', 'Scented candle.webp', 'Personalised card.webp'],
+  'fd-grand-dad-hamper': ['Hamper.webp', 'Luxury nuts & dates.webp', 'Dark chocolates.webp', 'Premium whiskey glass set.webp', 'Personalised leather tag.webp', 'Keepsake box.webp', 'Personalised card.webp'],
 
   // ── RAKHI ─────────────────────────────────────────────────────
   'rakhi-sweet-surprise': [],
@@ -119,6 +119,7 @@ export const hamperImages = {
  * Returns the image array for a hamper key.
  * Returns [] if no images are configured yet.
  */
+
 export function getImages(hamperKey) {
   return hamperImages[hamperKey] || [];
 }

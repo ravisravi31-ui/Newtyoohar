@@ -69,10 +69,17 @@ export default function Home() {
             </div>
           </div>
           <div className="hidden md:flex items-center justify-center">
-            <div className="w-80 h-80 bg-gradient-to-br from-rose-pale to-gold-pale rounded-3xl flex flex-col items-center justify-center shadow-xl hover-lift transition-all duration-500">
-              <span className="text-7xl mb-4">🎁</span>
-              <p className="font-display text-lg text-navy-brand text-center px-6">Beautiful hampers,<br />lovingly curated</p>
-              <p className="font-body text-sm text-rose-brand mt-2">Replace with product photo</p>
+            <div className="relative w-80 h-80 rounded-3xl overflow-hidden shadow-xl hover-lift transition-all duration-500">
+              <img
+                src="/images/hampers/fd-grand-dad-hamper/Hamper.webp"
+                alt="Tyoohar Ghar premium Father's Day gift hamper"
+                loading="eager"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-navy-brand/70 to-transparent p-5">
+                <p className="font-display text-lg text-white">Father's Day Hampers</p>
+                <p className="font-body text-sm text-cream-300">Curated for Dad · from ₹999</p>
+              </div>
             </div>
           </div>
         </div>
