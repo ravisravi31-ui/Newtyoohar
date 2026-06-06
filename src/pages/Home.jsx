@@ -108,11 +108,17 @@ export default function Home() {
       <section className="bg-cream-200 py-12 md:py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="bg-white rounded-3xl overflow-hidden shadow-md grid md:grid-cols-2 card-shimmer">
-            <div className="bg-gradient-to-br from-gold-pale to-rose-pale p-8 md:p-10 flex items-center justify-center min-h-44 md:min-h-52">
-              <div className="text-center">
-                <span className="text-5xl md:text-6xl">👔</span>
-                <p className="font-display text-base md:text-lg text-navy-brand mt-3">Father's Day</p>
-                <p className="font-body text-sm text-rose-brand">June 21 · Order by June 18</p>
+            <div className="relative min-h-44 md:min-h-full">
+              <img
+                src="/images/hampers/fd-cool-dad-box/Hamper.webp"
+                alt="Father's Day gift hamper by Tyoohar Ghar"
+                loading="lazy"
+                className="absolute inset-0 w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-brand/60 via-transparent to-transparent" />
+              <div className="absolute bottom-0 left-0 p-5 md:p-6">
+                <p className="font-display text-lg md:text-xl text-white">Father's Day</p>
+                <p className="font-body text-sm text-cream-300">June 21 · Order by June 18</p>
               </div>
             </div>
             <div className="p-6 sm:p-8 md:p-10 flex flex-col justify-center">
@@ -281,7 +287,7 @@ export default function Home() {
       {/* UGC CTA */}
       <section className="bg-cream-200 py-12 md:py-14 text-center">
         <div className="max-w-xl mx-auto px-4 sm:px-6">
-          <span className="text-4xl mb-4 block">📸</span>
+          <span className="text-4xl mb-4 block">📸</span>
           <h2 className="section-title mb-3">Share Your Unboxing</h2>
           <p className="font-body text-sm md:text-base text-navy-mid mb-6 leading-relaxed">
             Tag us <strong>@tyoohar_ghar</strong> on Instagram when your hamper arrives and get <strong>10% off your next order</strong>. We repost every single one.
