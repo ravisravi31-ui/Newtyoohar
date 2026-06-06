@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import SEOHead from '../components/SEOHead.jsx';
 import HamperGallery from '../components/HamperGallery.jsx';
-<<<<<<< HEAD
 import { useCart } from '../context/CartContext.jsx';
-=======
 import Countdown from '../components/Countdown.jsx';
->>>>>>> 84cac1d (Father's Day: optimized hamper photos, countdown, hero photos)
 
 const hampers = [
   {
